@@ -1,0 +1,42 @@
+
+{% extends './base.html' %}
+
+{% block content %}
+    <hr>
+    <h1 class="intro-text text-center">Get started by Test Mode</h1>
+    <hr class="detail-separator">
+    
+    <div class="col-md-6">
+     <h5>Video Streaming Demonstration</h5>
+       <!-- {% block media_content%} {% endblock %} --> 
+   
+    <!--<img src="/home/kevin/Downloads/test_exam.mp4" alt="video" class="img-responsive"> {{ MEDIA_URL }}/multimedia/test_exam.mp4 -->
+       <!-- <video width='400' controls>
+            <source src="{% url 'cheating:streamVideo' %}" alt="video" type='video/mp4'>
+            
+            Your browser does not support the video tag.
+        </video>--> 
+        <img src="{% url 'cheating:streamVideo' %}" alt="video" class="img-responsive" /> 
+      
+    </div>
+    <div class="col-md-6">
+            <div style="margin-bottom:0px">
+                <h5 class="text-center text-secondary">Monitor: Start by submitting all necessaries parameters </h5>
+            </div>
+
+            <form id="my_form" method="POST"  action="{% url 'cheating:streamVideo'%}">
+                {% csrf_token %}
+            <fieldset>
+                <legend class="text-primary">Parameters</legend>
+                 {% block subcontent %} {% endblock %}
+
+                <div style="padding:10px; text-align:right; "> 
+                    <button type="submit" class="btn btn-success" style="font-weight:bolder;">Schedule</button> 
+                </div>
+            </fieldset>
+        
+            </form> 
+    </div>
+ {% endblock %}
+
+ <script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>

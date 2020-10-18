@@ -1,0 +1,50 @@
+<!-- list albums -->
+<div class="col-lg-12">
+    <hr>
+    <h2 class="intro-text text-center">{{ list_title }}
+    </h2>
+    <hr class="detail-separator">
+</div>
+
+{% include './search_from.html' %}
+
+<!-- verify gabarit context results -->
+{% if albums|length_is:"0" %}
+    <div class="text-center">
+      <p>Oops! None results found</p>
+    </div>
+
+{% else %}
+   
+    {% for album in albums %}
+        
+        <div class="col-md-4 text-center">
+            <a href="{% url 'cheating:details' id=album.id %}" >
+                <img Class="img-responsive" src="{{ album.picture.url }}" alt="{{ album.title }}"/>
+            </a>
+            <h3><a href="{% url 'cheating:details' id=album.id %}"> {{ album.title }} </a></h3>
+
+            <!--list album artists-->
+            {% for artist in album.artists.all %}
+                <p> {{ artist.name }} </p>
+            {% endfor %}
+        </div>
+        {% if forloop.counter|divisibleby:3 %} <div class="clearfix"></div> {% endif %}
+    {% endfor %}
+
+    {% if paginate %}
+        <div class="clearfix"></div>
+        <nav aria-label="...">
+            <ul class="pager">
+                {% if albums.has_previous %}
+                    <li> <a href="?page={{ albums.previous_page_number }}"> Previous </a></li>
+                {% endif %}
+                {% if albums.has_next %}
+                    <li> <a href="?page={{ albums.next_page_number }}"> Next </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+
+{% endif %}
